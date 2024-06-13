@@ -77,6 +77,12 @@ return {
                     client.server_capabilities.documentFormattingProvider = true
                 end,
             })
+			-- lsp go
+			lspconfig.gopls.setup({
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = true
+				end,
+			})
 
             local opts = { noremap = true, silent = true }
 
