@@ -11,7 +11,7 @@ vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
 -- set pwsh as default shell
-vim.o.shell = "C:\\Users\\USER\\AppData\\Local\\Microsoft\\WindowsApps\\Microsoft.PowerShell_8wekyb3d8bbwe\\pwsh.exe"
+vim.o.shell = "pwsh"
 vim.o.shellxquote = ""
 vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
 vim.o.shellquote = ""
