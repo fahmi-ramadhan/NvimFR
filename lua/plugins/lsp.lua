@@ -59,7 +59,7 @@ return {
 
 			-- ESLint setup
 			lspconfig.eslint.setup({
-				on_attach = function(client, bufnr)
+				on_attach = function(bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
 						command = "EslintFixAll",
@@ -124,9 +124,42 @@ return {
 			})
 
 			lspconfig.tsserver.setup({
-				on_attach = function(client)
-					client.server_capabilities.documentFormattingProvider = true
+				on_attach = function(client, bufnr)
+					-- Disable tsserver formatting if you prefer to use Prettier
+					client.server_capabilities.documentFormattingProvider = false
+
+					-- Enable completion triggered by <c-x><c-o>
+					vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+					-- Add any other custom on_attach functionality here
 				end,
+				settings = {
+					typescript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
+				},
+				flags = {
+					debounce_text_changes = 150,
+				},
 			})
 
 			lspconfig.svelte.setup({
