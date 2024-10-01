@@ -10,6 +10,16 @@ vim.o.expandtab = true
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 
+-- set tab size to 2 for specific file types
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.softtabstop = 2
+        vim.bo.shiftwidth = 2
+    end,
+})
+
 -- set pwsh as default shell
 vim.o.shell = "pwsh"
 vim.o.shellxquote = ""
