@@ -90,6 +90,13 @@ return {
 							"handlebars",
 						},
 						prefer_local = "node_modules/.bin",
+						command = "prettier",
+						args = function(params)
+							return {
+								"--stdin-filepath",
+								vim.fn.shellescape(params.fname),
+							}
+						end,
 					}),
 					null_ls.builtins.formatting.stylua,
 				},
