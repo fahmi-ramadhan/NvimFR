@@ -89,12 +89,11 @@ return {
 							"graphql",
 							"handlebars",
 						},
-						prefer_local = "node_modules/.bin",
 						command = "prettier",
 						args = function(params)
 							return {
 								"--stdin-filepath",
-								vim.fn.shellescape(params.fname),
+								vim.fn.fnamemodify(params.bufname, ":p"),
 							}
 						end,
 					}),

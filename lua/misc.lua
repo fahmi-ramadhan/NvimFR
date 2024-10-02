@@ -12,12 +12,12 @@ vim.o.shiftwidth = 4
 
 -- set tab size to 2 for specific file types
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
-    callback = function()
-        vim.bo.tabstop = 2
-        vim.bo.softtabstop = 2
-        vim.bo.shiftwidth = 2
-    end,
+	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
+	callback = function()
+		vim.bo.tabstop = 2
+		vim.bo.softtabstop = 2
+		vim.bo.shiftwidth = 2
+	end,
 })
 
 -- set pwsh as default shell
@@ -33,7 +33,7 @@ vim.wo.relativenumber = true
 
 -- line break
 vim.opt.breakindent = true
-vim.opt.formatoptions:remove "t"
+vim.opt.formatoptions:remove("t")
 vim.opt.linebreak = true
 
 -- incremental search
@@ -44,7 +44,7 @@ vim.opt.scrolloff = 10
 
 -- misc
 vim.opt.signcolumn = "yes"
-vim.opt.isfname:append "@-@"
+vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 -- keymaps for switching windows
