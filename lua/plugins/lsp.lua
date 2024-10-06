@@ -16,6 +16,7 @@ return {
 					"tsserver",
 					"svelte",
 					"eslint",
+					"tailwindcss",
 				},
 			})
 		end,
@@ -56,6 +57,7 @@ return {
 
 			lspconfig.html.setup({})
 			lspconfig.cssls.setup({})
+			lspconfig.tailwindcss.setup({})
 
 			-- ESLint setup
 			lspconfig.eslint.setup({
