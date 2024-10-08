@@ -13,7 +13,7 @@ return {
 					"cssls",
 					"html",
 					"emmet_ls",
-					"tsserver",
+					"ts_ls",
 					"svelte",
 					"eslint",
 					"tailwindcss",
@@ -131,9 +131,9 @@ return {
 				end,
 			})
 
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				on_attach = function(client, bufnr)
-					-- Disable tsserver formatting if you prefer to use Prettier
+					-- Disable ts_ls formatting if you prefer to use Prettier
 					client.server_capabilities.documentFormattingProvider = false
 
 					-- Enable completion triggered by <c-x><c-o>
