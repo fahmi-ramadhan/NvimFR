@@ -95,7 +95,7 @@ return {
 						args = function(params)
 							return {
 								"--stdin-filepath",
-								vim.fn.fnamemodify(params.bufname, ":p"),
+								vim.fn.shellescape(params.fname),
 							}
 						end,
 					}),
