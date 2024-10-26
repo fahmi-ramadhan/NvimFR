@@ -60,23 +60,23 @@ return {
 			-- eslint setup
 			lspconfig.eslint.setup({
 				on_attach = function(_, bufnr)
-					vim.api.nvim_create_autocmd("bufwritepre", {
+					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
-						command = "eslintfixall",
+						command = "EslintFixAll",
 					})
 				end,
 			})
 
 			lspconfig.lua_ls.setup({
 				settings = {
-					lua = {
+					Lua = {
 						diagnostics = {
 							globals = { "vim" },
 						},
 					},
 				},
 				on_attach = function(client)
-					client.server_capabilities.documentformattingprovider = true
+					client.server_capabilities.documentFormattingProvider = true
 				end,
 			})
 
