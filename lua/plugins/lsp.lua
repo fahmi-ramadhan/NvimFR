@@ -24,12 +24,10 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"jose-elias-alvarez/null-ls.nvim",
 			"nvim-lua/plenary.nvim",
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
-			local null_ls = require("null-ls")
 
 			local emmetCapabilities = vim.lsp.protocol.make_client_capabilities()
 			emmetCapabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -59,87 +57,33 @@ return {
 			lspconfig.cssls.setup({})
 			lspconfig.tailwindcss.setup({})
 
-			-- ESLint setup
+			-- eslint setup
 			lspconfig.eslint.setup({
 				on_attach = function(_, bufnr)
-					vim.api.nvim_create_autocmd("BufWritePre", {
+					vim.api.nvim_create_autocmd("bufwritepre", {
 						buffer = bufnr,
-						command = "EslintFixAll",
-					})
-				end,
-			})
-
-			-- Prettier and other formatting tools
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.formatting.prettier.with({
-						filetypes = {
-							"javascript",
-							"typescript",
-							"javascriptreact",
-							"typescriptreact",
-							"vue",
-							"css",
-							"scss",
-							"less",
-							"html",
-							"json",
-							"jsonc",
-							"yaml",
-							"markdown",
-							"markdown.mdx",
-							"graphql",
-							"handlebars",
-						},
-						command = "prettier",
-						args = function(params)
-							return {
-								"--stdin-filepath",
-								vim.fn.shellescape(params.fname),
-							}
-						end,
-					}),
-					null_ls.builtins.formatting.stylua,
-				},
-			})
-
-			-- Create an augroup for the autocommands
-			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-			-- Set up autocommand for formatting on save
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = augroup,
-				callback = function()
-					vim.lsp.buf.format({
-						filter = function(client)
-							return client.name == "null-ls"
-						end,
+						command = "eslintfixall",
 					})
 				end,
 			})
 
 			lspconfig.lua_ls.setup({
 				settings = {
-					Lua = {
+					lua = {
 						diagnostics = {
 							globals = { "vim" },
 						},
 					},
 				},
 				on_attach = function(client)
-					client.server_capabilities.documentFormattingProvider = true
+					client.server_capabilities.documentformattingprovider = true
 				end,
 			})
 
 			lspconfig.ts_ls.setup({
-				on_attach = function(client, bufnr)
-					-- Disable ts_ls formatting if you prefer to use Prettier
-					client.server_capabilities.documentFormattingProvider = false
-
+				on_attach = function(_, bufnr)
 					-- Enable completion triggered by <c-x><c-o>
 					vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-					-- Add any other custom on_attach functionality here
 				end,
 				settings = {
 					typescript = {
@@ -182,7 +126,6 @@ return {
 				end,
 			})
 
-			-- Existing keymaps...
 			local opts = { noremap = true, silent = true }
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -203,9 +146,6 @@ return {
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 			vim.keymap.set("n", "<leader>E", vim.diagnostic.open_float, opts)
 			vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
-
-			-- Add a keymap for manual formatting
-			vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, opts)
 		end,
 	},
 }
