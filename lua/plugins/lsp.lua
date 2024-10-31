@@ -17,6 +17,7 @@ return {
 					"svelte",
 					"eslint",
 					"tailwindcss",
+					"jdtls",
 				},
 			})
 		end,
@@ -121,6 +122,12 @@ return {
 			})
 
 			lspconfig.gopls.setup({
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = true
+				end,
+			})
+
+			lspconfig.jdtls.setup({
 				on_attach = function(client)
 					client.server_capabilities.documentFormattingProvider = true
 				end,

@@ -24,6 +24,7 @@ return {
 			["html"] = true,
 			["css"] = true,
 			["scss"] = true,
+			["java"] = true,
 		}
 	end,
 }
