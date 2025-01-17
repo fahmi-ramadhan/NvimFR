@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- set clipboard options
 vim.opt.clipboard = "unnamedplus"
 
+-- enable gui color
+vim.opt.termguicolors = true
+
 -- set tab size to 4 space
 vim.o.tabstop = 4
 vim.o.expandtab = true
