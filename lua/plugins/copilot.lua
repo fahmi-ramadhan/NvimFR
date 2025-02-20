@@ -25,6 +25,7 @@ return {
 			["css"] = true,
 			["scss"] = true,
 			["java"] = true,
+			["tex"] = true,
 		}
 	end,
 }

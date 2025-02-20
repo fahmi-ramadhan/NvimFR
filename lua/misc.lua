@@ -49,6 +49,7 @@ vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
+vim.cmd("syntax on")
 
 -- keymaps for switching windows
 -- switch to the left
