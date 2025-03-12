@@ -18,6 +18,7 @@ return {
 					"eslint",
 					"tailwindcss",
 					"jdtls",
+					"pyright",
 				},
 			})
 		end,
@@ -131,6 +132,21 @@ return {
 				on_attach = function(client)
 					client.server_capabilities.documentFormattingProvider = true
 				end,
+			})
+
+			lspconfig.pyright.setup({
+				on_attach = function(client)
+					client.server_capabilities.documentFormattingProvider = true
+				end,
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "workspace",
+							useLibraryCodeForTypes = true,
+						},
+					},
+				},
 			})
 
 			local opts = { noremap = true, silent = true }
