@@ -4,6 +4,17 @@ vim.g.mapleader = " "
 -- set clipboard options
 vim.opt.clipboard = "unnamedplus"
 
+vim.g.clipboard = {
+	copy = {
+		["+"] = "win32yank -i --crlf",
+		["*"] = "win32yank -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank -o --lf",
+		["*"] = "win32yank -o --lf",
+	},
+}
+
 -- enable gui color
 vim.opt.termguicolors = true
 
@@ -23,13 +34,16 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- set pwsh as default shell
-vim.o.shell = "pwsh"
-vim.o.shellxquote = ""
-vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
-vim.o.shellquote = ""
-vim.o.shellpipe = "| Out-File -Encoding UTF8 %s"
-vim.o.shellredir = "| Out-File -Encoding UTF8 %s"
+-- set shell based on environment (Windows or WSL)
+if vim.fn.has("wsl") == 1 then
+	vim.o.shell = "nu"
+else
+	vim.o.shell = "pwsh"
+	vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+	vim.o.shellquote = ""
+	vim.o.shellpipe = "| Out-File -Encoding UTF8 %s"
+	vim.o.shellredir = "| Out-File -Encoding UTF8 %s"
+end
 
 -- set relative line number
 vim.wo.relativenumber = true
