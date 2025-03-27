@@ -5,14 +5,14 @@ vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus"
 
 vim.g.clipboard = {
-	copy = {
-		["+"] = "win32yank -i --crlf",
-		["*"] = "win32yank -i --crlf",
-	},
-	paste = {
-		["+"] = "win32yank -o --lf",
-		["*"] = "win32yank -o --lf",
-	},
+    copy = {
+        ["+"] = "win32yank -i --crlf",
+        ["*"] = "win32yank -i --crlf",
+    },
+    paste = {
+        ["+"] = "win32yank -o --lf",
+        ["*"] = "win32yank -o --lf",
+    },
 }
 
 -- enable gui color
@@ -26,23 +26,23 @@ vim.o.shiftwidth = 4
 
 -- set tab size to 2 for specific file types
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
-	callback = function()
-		vim.bo.tabstop = 2
-		vim.bo.softtabstop = 2
-		vim.bo.shiftwidth = 2
-	end,
+    pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.softtabstop = 2
+        vim.bo.shiftwidth = 2
+    end,
 })
 
 -- set shell based on environment (Windows or WSL)
 if vim.fn.has("wsl") == 1 then
-	vim.o.shell = "nu"
+    vim.o.shell = "nu"
 else
-	vim.o.shell = "pwsh"
-	vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
-	vim.o.shellquote = ""
-	vim.o.shellpipe = "| Out-File -Encoding UTF8 %s"
-	vim.o.shellredir = "| Out-File -Encoding UTF8 %s"
+    vim.o.shell = "pwsh"
+    vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+    vim.o.shellquote = ""
+    vim.o.shellpipe = "| Out-File -Encoding UTF8 %s"
+    vim.o.shellredir = "| Out-File -Encoding UTF8 %s"
 end
 
 -- set relative line number
