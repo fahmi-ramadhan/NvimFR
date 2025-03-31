@@ -24,13 +24,14 @@ This repository contains my personal Neovim configuration files
 - Syntax highlighting and indentation (Treesitter)
 - Status line (Lualine)
 - Buffer line
-- Git integration (Gitsigns, Neogit)
+- Git integration (Gitsigns, Neogit, Diffview)
 - Code completion (nvim-cmp, Copilot)
 - Snippet support (LuaSnip)
 - LSP support with various language servers
-- Markdown preview
+- Markdown preview and rendering
 - Terminal integration
 - Auto-formatting and linting
+- LaTeX support
 - And more!
 
 ## Plugin List
@@ -60,7 +61,17 @@ This repository contains my personal Neovim configuration files
 - mason.nvim
 - mason-lspconfig.nvim
 - nvim-lspconfig
-- null-ls.nvim
+- conform.nvim
+- noice.nvim
+- nvim-highlight-colors
+- img-clip.nvim
+- render-markdown.nvim
+- telescope-ui-select.nvim
+- diffview.nvim
+- dressing.nvim
+- nvim-notify
+- avante.nvim
+- vimtex
 
 ## Key Mappings
 
@@ -141,3 +152,13 @@ This repository contains my personal Neovim configuration files
 ### Copilot
 
 - `<C-J>`: Accept Copilot suggestion
+
+### LaTeX (vimtex)
+
+- `<leader>ll`: Compile LaTeX document
+- `<leader>lv`: View LaTeX PDF
+- `<leader>lk`: Kill LaTeX compiler
+- `<leader>le`: Show errors
+- `<leader>lw`: Show warnings
+- `<leader>lo`: Show log
+- `<leader>lg`: Show log and errors
