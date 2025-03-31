@@ -100,3 +100,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
+
+-- clear search highlighting
+vim.keymap.set('n', '<Esc>', ':noh<CR>', { silent = true })
