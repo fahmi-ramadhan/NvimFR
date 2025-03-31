@@ -24,54 +24,17 @@ This repository contains my personal Neovim configuration files
 - Syntax highlighting and indentation (Treesitter)
 - Status line (Lualine)
 - Buffer line
-- Git integration (Gitsigns, Neogit, Diffview)
+- Git integration (Gitsigns, Neogit)
 - Code completion (nvim-cmp, Copilot)
 - Snippet support (LuaSnip)
 - LSP support with various language servers
-- Markdown preview and rendering
-- Terminal integration
+- Markdown preview
+- Terminal integration (Nvterm)
 - Auto-formatting and linting
-- LaTeX support
+- LaTeX support (VimTex)
+- AI chat integration (Avante)
+- Better UI for messages, cmdline and the popupmenu (💥Noice)
 - And more!
-
-## Plugin List
-
-- lazy.nvim (Plugin manager)
-- bufferline.nvim
-- tokyonight.nvim (Color scheme)
-- Comment.nvim
-- copilot.vim
-- vim-illuminate
-- eyeliner.nvim
-- beacon.nvim
-- vim-highlightedyank
-- which-key.nvim
-- lualine.nvim
-- markdown-preview.nvim
-- nvim-tree.lua
-- nvterm
-- rustaceanvim
-- telescope.nvim
-- nvim-treesitter
-- LuaSnip
-- nvim-cmp (and related completion sources)
-- nvim-autopairs
-- gitsigns.nvim
-- neogit
-- mason.nvim
-- mason-lspconfig.nvim
-- nvim-lspconfig
-- conform.nvim
-- noice.nvim
-- nvim-highlight-colors
-- img-clip.nvim
-- render-markdown.nvim
-- telescope-ui-select.nvim
-- diffview.nvim
-- dressing.nvim
-- nvim-notify
-- avante.nvim
-- vimtex
 
 ## Key Mappings
 
