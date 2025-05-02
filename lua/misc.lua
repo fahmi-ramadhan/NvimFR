@@ -1,19 +1,39 @@
 -- set leader key to space
 vim.g.mapleader = " "
 
--- set clipboard options
+-- Detect operating system
+local is_wsl = vim.fn.has("wsl") == 1
+local is_win = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+local is_linux = not is_wsl and not is_win
+
+-- Set clipboard options based on environment
 vim.opt.clipboard = "unnamedplus"
 
-vim.g.clipboard = {
-    copy = {
-        ["+"] = "win32yank -i --crlf",
-        ["*"] = "win32yank -i --crlf",
-    },
-    paste = {
-        ["+"] = "win32yank -o --lf",
-        ["*"] = "win32yank -o --lf",
-    },
-}
+if is_wsl then
+    -- WSL-specific clipboard configuration
+    vim.g.clipboard = {
+        copy = {
+            ["+"] = "win32yank -i --crlf",
+            ["*"] = "win32yank -i --crlf",
+        },
+        paste = {
+            ["+"] = "win32yank -o --lf",
+            ["*"] = "win32yank -o --lf",
+        },
+    }
+elseif is_linux then
+    -- Linux clipboard configuration
+    vim.g.clipboard = {
+        copy = {
+            ["+"] = "xclip -selection clipboard",
+            ["*"] = "xclip -selection primary",
+        },
+        paste = {
+            ["+"] = "xclip -selection clipboard -o",
+            ["*"] = "xclip -selection primary -o",
+        },
+    }
+end
 
 -- enable gui color
 vim.opt.termguicolors = true
@@ -34,8 +54,8 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- set shell based on environment (Windows or WSL)
-if vim.fn.has("wsl") == 1 then
+-- set shell based on environment
+if is_wsl or is_linux then
     vim.o.shell = "nu"
 else
     vim.o.shell = "pwsh"
@@ -93,10 +113,8 @@ vim.keymap.set("n", "Q", "<nop>")
 
 -- biar text gak terlalu mepet ke bawah pas scroll
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
-
 -- biar text gak terlalu mepet ke atas pas scroll
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "J", "mzJ`z")
