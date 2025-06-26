@@ -18,6 +18,7 @@ return {
                     "tailwindcss",
                     "jdtls",
                     "pyright",
+                    "tflint",
                 },
             })
         end,
@@ -57,6 +58,7 @@ return {
             lspconfig.html.setup({})
             lspconfig.cssls.setup({})
             lspconfig.tailwindcss.setup({})
+            lspconfig.tflint.setup({})
 
             -- eslint setup
             lspconfig.eslint.setup({
