@@ -19,6 +19,7 @@ return {
                     "jdtls",
                     "pyright",
                     "tflint",
+                    "gopls",
                 },
             })
         end,
