@@ -14,6 +14,7 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "eyeliner.nvim": { "branch": "main", "commit": "8f197eb30cecdf4c2cc9988a5eecc6bc34c0c7d6" },
+  "flutter-tools.nvim": { "branch": "main", "commit": "65b7399804315a1160933b64292d3c5330aa4e9f" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "6ef8c54fb526bf3a0bc4efb0b2fe8e6d9a7daed2" },
   "img-clip.nvim": { "branch": "main", "commit": "d8b6b030672f9f551a0e3526347699985a779d93" },
