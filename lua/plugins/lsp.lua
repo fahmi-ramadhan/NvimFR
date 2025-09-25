@@ -30,12 +30,12 @@ return {
             "nvim-lua/plenary.nvim",
         },
         config = function()
-            local lspconfig = require("lspconfig")
-
             local emmetCapabilities = vim.lsp.protocol.make_client_capabilities()
             emmetCapabilities.textDocument.completion.completionItem.snippetSupport = true
 
-            lspconfig.emmet_ls.setup({
+            -- Emmet LS setup
+            vim.lsp.config.emmet_ls = {
+                cmd = { "emmet-ls", "--stdio" },
                 capabilities = emmetCapabilities,
                 filetypes = {
                     "css",
@@ -54,24 +54,28 @@ return {
                         },
                     },
                 },
-            })
+            }
 
-            lspconfig.html.setup({})
-            lspconfig.cssls.setup({})
-            lspconfig.tailwindcss.setup({})
-            lspconfig.tflint.setup({})
+            -- Basic setups
+            vim.lsp.config("html", {})
+            vim.lsp.config("cssls", {})
+            vim.lsp.config("tailwindcss", {})
+            vim.lsp.config("tflint", {})
 
-            -- eslint setup
-            lspconfig.eslint.setup({
+            -- ESLint setup
+            vim.lsp.config.eslint = {
+                cmd = { "vscode-eslint-language-server", "--stdio" },
                 on_attach = function(_, bufnr)
                     vim.api.nvim_create_autocmd("BufWritePre", {
                         buffer = bufnr,
                         command = "EslintFixAll",
                     })
                 end,
-            })
+            }
 
-            lspconfig.lua_ls.setup({
+            -- Lua LS setup
+            vim.lsp.config.lua_ls = {
+                cmd = { "lua-language-server" },
                 settings = {
                     Lua = {
                         diagnostics = {
@@ -82,9 +86,11 @@ return {
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = true
                 end,
-            })
+            }
 
-            lspconfig.ts_ls.setup({
+            -- TypeScript LS setup
+            vim.lsp.config.ts_ls = {
+                cmd = { "typescript-language-server", "--stdio" },
                 on_attach = function(_, bufnr)
                     -- Enable completion triggered by <c-x><c-o>
                     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -116,27 +122,35 @@ return {
                 flags = {
                     debounce_text_changes = 150,
                 },
-            })
+            }
 
-            lspconfig.svelte.setup({
+            -- Svelte setup
+            vim.lsp.config.svelte = {
+                cmd = { "svelteserver", "--stdio" },
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = true
                 end,
-            })
+            }
 
-            lspconfig.gopls.setup({
+            -- Go setup
+            vim.lsp.config.gopls = {
+                cmd = { "gopls" },
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = true
                 end,
-            })
+            }
 
-            lspconfig.jdtls.setup({
+            -- Java setup
+            vim.lsp.config.jdtls = {
+                cmd = { "jdtls" },
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = true
                 end,
-            })
+            }
 
-            lspconfig.pyright.setup({
+            -- Python setup
+            vim.lsp.config.pyright = {
+                cmd = { "pyright-langserver", "--stdio" },
                 on_attach = function(client)
                     client.server_capabilities.documentFormattingProvider = true
                 end,
@@ -149,8 +163,9 @@ return {
                         },
                     },
                 },
-            })
+            }
 
+            -- Key mappings
             local opts = { noremap = true, silent = true }
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
