@@ -46,7 +46,7 @@ vim.o.shiftwidth = 4
 
 -- set tab size to 2 for specific file types
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx" },
+    pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "tsx", "dart" },
     callback = function()
         vim.bo.tabstop = 2
         vim.bo.softtabstop = 2
