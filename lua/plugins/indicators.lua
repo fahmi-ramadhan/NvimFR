@@ -1,4 +1,4 @@
-  return {
+return {
     -- word usage highlighter
     {
         "RRethy/vim-illuminate",
