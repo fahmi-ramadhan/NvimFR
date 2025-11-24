@@ -20,6 +20,8 @@ return {
                     "pyright",
                     "tflint",
                     "gopls",
+                    "intelephense",
+                    "laravel_ls",
                 },
             })
         end,
@@ -163,6 +165,27 @@ return {
                         },
                     },
                 },
+            }
+
+            -- PHP Intelephense
+            vim.lsp.config.intelephense = {
+                cmd = { "intelephense", "--stdio" },
+                settings = {
+                    intelephense = {
+                        telemetry = {
+                            enabled = false,
+                        },
+                    },
+                },
+            }
+
+            -- Laravel Language Server
+            vim.lsp.config.laravel_ls = {
+                cmd = { "laravel-language-server" },
+                filetypes = { "php", "blade" },
+                root_dir = function()
+                    return vim.fn.getcwd()
+                end,
             }
 
             -- Key mappings
