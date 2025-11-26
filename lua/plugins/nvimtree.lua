@@ -84,6 +84,9 @@ return {
                     vim.fn.jobstart({ "xdg-open", node.absolute_path }, { detach = true })
                 end
             end, opts('Open with system default'))
+
+            -- Toggle gitignore filter
+            vim.keymap.set('n', 'I', api.tree.toggle_gitignore_filter, opts('Toggle Git Ignored'))
         end
 
         require("nvim-tree").setup {
