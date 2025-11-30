@@ -22,6 +22,7 @@ return {
                     "gopls",
                     "intelephense",
                     "laravel_ls",
+                    "vue_ls",
                 },
             })
         end,
@@ -32,6 +33,16 @@ return {
             "nvim-lua/plenary.nvim",
         },
         config = function()
+            local vue_language_server_path = vim.fn.expand '$MASON/packages' ..
+                '/vue-language-server' .. '/node_modules/@vue/language-server'
+
+            local vue_plugin = {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+                configNamespace = 'typescript',
+            }
+
             local emmetCapabilities = vim.lsp.protocol.make_client_capabilities()
             emmetCapabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -48,6 +59,7 @@ return {
                     "scss",
                     "svelte",
                     "typescriptreact",
+                    "vue",
                 },
                 init_options = {
                     html = {
@@ -63,6 +75,8 @@ return {
             vim.lsp.config("cssls", {})
             vim.lsp.config("tailwindcss", {})
             vim.lsp.config("tflint", {})
+            vim.lsp.config("vue_ls", {})
+            vim.lsp.enable({ 'ts_ls', 'vue_ls' })
 
             -- ESLint setup
             vim.lsp.config.eslint = {
@@ -93,6 +107,12 @@ return {
             -- TypeScript LS setup
             vim.lsp.config.ts_ls = {
                 cmd = { "typescript-language-server", "--stdio" },
+                init_options = {
+                    plugins = {
+                        vue_plugin,
+                    },
+                },
+                filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
                 on_attach = function(_, bufnr)
                     -- Enable completion triggered by <c-x><c-o>
                     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

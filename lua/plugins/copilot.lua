@@ -28,6 +28,7 @@ return {
             ["tex"] = true,
             ["dart"] = true,
             ["php"] = true,
+            ["vue"] = true,
         }
     end,
 }
