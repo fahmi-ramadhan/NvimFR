@@ -29,6 +29,7 @@ return {
             ["dart"] = true,
             ["php"] = true,
             ["vue"] = true,
+            ["cpp"] = true,
         }
     end,
 }

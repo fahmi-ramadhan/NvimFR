@@ -23,6 +23,7 @@ return {
                     "intelephense",
                     "laravel_ls",
                     "vue_ls",
+                    "clangd",
                 },
             })
         end,
@@ -206,6 +207,24 @@ return {
                 root_dir = function()
                     return vim.fn.getcwd()
                 end,
+            }
+
+            -- Clangd setup
+            vim.lsp.config.clangd = {
+                cmd = {
+                    "clangd",
+                    "--background-index",
+                    "--clang-tidy",
+                    "--header-insertion=iwyu",
+                    "--completion-style=detailed",
+                },
+                filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+                on_attach = function(client)
+                    client.server_capabilities.documentFormattingProvider = true
+                end,
+                capabilities = {
+                    offsetEncoding = { "utf-16" },
+                },
             }
 
             -- Key mappings
