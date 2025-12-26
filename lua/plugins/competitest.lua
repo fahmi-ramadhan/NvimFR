@@ -5,7 +5,8 @@ return {
         require('competitest').setup({
             runner_ui = {
                 interface = "split"
-            }
+            },
+            testcases_directory = "tests",
         })
     end,
 }
