@@ -174,9 +174,6 @@ return {
             -- Python setup
             vim.lsp.config.pyright = {
                 cmd = { "pyright-langserver", "--stdio" },
-                on_attach = function(client)
-                    client.server_capabilities.documentFormattingProvider = true
-                end,
                 settings = {
                     python = {
                         analysis = {

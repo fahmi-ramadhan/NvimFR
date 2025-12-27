@@ -7,6 +7,9 @@ return {
                 interface = "split"
             },
             testcases_directory = "tests",
+            run_command = {
+                python = { exec = "python3", args = { "$(FNAME)" } },
+            },
         })
     end,
 }
